@@ -1,13 +1,21 @@
+import { Context, Next } from "koa";
+
 /**
  *
  * @param {Object} options
  * @param {Number} options.maxage 缓存时间
  * @param {Number} options.immutable https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
  */
-function send(options) {
+
+interface ISendOptions {
+  maxage: number;
+  immutable: boolean;
+}
+
+function send(options: ISendOptions) {
   const { maxage = 0, immutable = false } = options;
 
-  return function(ctx, next) {
+  return async function (ctx: Context, next: Next) {
     // 缓存
     if (!ctx.response.get("Last-Modified"))
       ctx.set("Last-Modified", stats.mtime.toUTCString());
