@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@koa/cors": "^3.1.0",
     "@koa/router": "^10.0.0",
     "koa": "^2.13.1",
     "koa-body": "^4.1.1",
@@ -19,7 +20,11 @@
     "koa-static": "^5.0.0"
   },
   "devDependencies": {
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-static": "^4.0.2",
+    "@types/koa__cors": "^3.0.3",
     "@types/koa__router": "^8.0.8",
+    "koa-logger": "^3.2.1",
     "nodemon": "^2.0.2",
     "typescript": "^4.4.3"
   }

@@ -6,7 +6,7 @@ const router = new Router({
 });
 
 // file
-router.get("/file", FileController.upload);
 router.post("/file/upload", FileController.upload);
+// router.get("/file", FileController.upload);
 
 export default router;
