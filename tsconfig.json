@@ -6,7 +6,9 @@
     "strict": true,
     "declaration": true,
     "noUnusedLocals": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "rootDir": "./app",
+    "outDir": "dist"
   },
   "include": ["**/*"],
   "exclude": ["node_modules"]

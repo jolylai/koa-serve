@@ -1,12 +1,14 @@
 import { Context, Next } from "koa";
+
 import fs from "fs";
 import path from "path";
 
 async function upload(ctx: Context, next: Next) {
   const files = ctx.request.files;
-  const file = files?.file;
 
-  if (!file) {
+  const file = Array.isArray(files?.file) ? files?.file[0] : files?.file;
+
+  if (!(file instanceof File)) {
     ctx.status = 400;
 
     ctx.body = {
@@ -19,7 +21,11 @@ async function upload(ctx: Context, next: Next) {
   const reader = fs.createReadStream(file.path);
 
   const stream = fs.createWriteStream(
-    path.join(__dirname, "../../static", file.name)
+    path.join(
+      __dirname,
+      "../../static",
+      file.name || `${Math.random() * 100000} `
+    )
   );
 
   reader.pipe(stream);
