@@ -16,10 +16,10 @@
 
   const fileHandler = (event) => {
     event.preventDefault();
+
     const { files } = event.target;
 
     if (files[0]) {
-      console.log("files[0]: ", files[0]);
       uploadFile(files[0]);
     }
   };

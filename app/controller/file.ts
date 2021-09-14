@@ -26,6 +26,8 @@ async function upload(ctx: Context, next: Next) {
 
   console.log("uploading %s -> %s", file.name, stream.path);
 
+  await next();
+
   ctx.status = 200;
   ctx.body = {
     fileUrl: file.name,
