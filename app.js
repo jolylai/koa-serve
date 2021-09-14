@@ -1,10 +1,11 @@
+const path = require("path");
+const fs = require("fs");
 const Koa = require("koa2");
 const koaBody = require("koa-body");
 const koaStatic = require("koa-static");
+const send = require("koa-send");
 const cors = require("koa2-cors");
 const router = require("koa-router")();
-const path = require("path");
-const fs = require("fs");
 
 const app = new Koa();
 const port = process.env.PORT || "3000";
@@ -69,6 +70,15 @@ router.post("/upload", async ctx => {
   } catch (error) {
     ctx.body = { status: 500, message: error };
   }
+});
+
+// 下载
+router.get("/download/:name", async ctx => {
+  const name = ctx.params.name;
+  // const filePath = path.resolve(__dirname, `../static/uploads/${name}`);
+  const path = `../static/upload/${name}`;
+  ctx.attachment(path);
+  await send(ctx, path);
 });
 
 app.use(router.routes()).use(router.allowedMethods());

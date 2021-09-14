@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="download">下载</button>
+    <a download href="http://localhost:3000/download/forest.jpg">图片下载</a>
+
+    <script type="module">
+      import request from "./request.js";
+      const downloadBtn = document.getElementById("download");
+
+      function onDownload() {
+        request({
+          url: "http://localhost:3000/download/forest.jpg"
+        });
+      }
+
+      downloadBtn.addEventListener("click", onDownload, false);
+    </script>
+  </body>
+</html>
