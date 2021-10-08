@@ -10,6 +10,7 @@ import router from "./routes";
 
 const app = new Koa();
 
+// middleware
 app.use(logger());
 app.use(cors());
 

@@ -6,14 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Login</title>
+    <link href="./index.css" rel="stylesheet" />
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
   </head>
 
-  <body>
-    <form name="login" id="loginForm">
-      <input name="userName" placeholder="请输入用户名" value="Jack" />
-      <input name="password" type="password" value="123456" />
-      <button type="submit">Submit</button>
+  <body class="container">
+    <form class="form" name="login" id="loginForm">
+      <div class="form-item">
+        <input
+          class="form-input"
+          name="userName"
+          placeholder="请输入用户名"
+          value="Jack"
+        />
+        <label class="form-label">用户名</label>
+      </div>
+      <div class="form-item">
+        <input
+          class="form-input"
+          name="password"
+          type="password"
+          value="123456"
+        />
+        <label class="form-label">密码</label>
+      </div>
+      <div class="form-item">
+        <button type="submit">Submit</button>
+      </div>
     </form>
 
     <script src="./index.js"></script>
