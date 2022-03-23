@@ -1,17 +1,27 @@
-import { Context, Next } from "koa";
+// import jwt from "jsonwebtoken";
+import type { Context, Next } from "koa";
 
 function auth() {
   return async function (ctx: Context, next: Next) {
-    const token = ctx.get("Authorization");
+    const authHeader = ctx.get("Authorization");
 
-    if (token) {
-      ctx.status = 403;
-      ctx.body = "Forbidden";
-      return;
+    if (!authHeader || authHeader.startsWith("Bearer ")) {
+      throw new Error("No token provided");
     }
+
+    const token = authHeader.split(" ")[1];
     console.log("token: ", token);
 
-    await next();
+    try {
+      // process.env.JWT_SECRET
+      // const { id, name } = jwt.verify(token, "JWT_SECRET");
+
+      // ctx.request.user = { id, name };
+
+      await next();
+    } catch (error) {
+      throw error;
+    }
   };
 }
 

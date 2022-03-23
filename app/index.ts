@@ -18,7 +18,7 @@ app.use(cors());
 app.use(koaBody({ multipart: true }));
 app.use(server(path.join(__dirname, "/static")));
 
-app.use(router.routes());
+app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(config.port, () => {
   console.log(`server listen at: http://localhost:${config.port}`);

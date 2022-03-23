@@ -8,7 +8,8 @@
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "rootDir": "./app",
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": ["node"]  
   },
   "include": ["**/*"],
   "exclude": ["node_modules"]

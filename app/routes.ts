@@ -1,8 +1,9 @@
 import Router from "@koa/router";
 
-import FileController from "./controller/file";
-import LoginController from "./controller/login";
+import Auth from "./controller/auth";
 // import auth from "./middleware/auth";
+
+const AuthController = new Auth();
 
 const router = new Router({
   prefix: "/api",
@@ -11,12 +12,13 @@ const router = new Router({
 // router.use(auth());
 
 // login
-router.get("/login", LoginController.login);
-router.post("/login", LoginController.login);
-router.post("/logout", LoginController.logout);
+// router.get("/login", AuthController.login);
+router.post("/register", AuthController.register);
+router.post("/verify-email", AuthController.verifyEmail);
+// router.post("/logout", LoginController.logout);
 
 // file
-router.get("/file", FileController.upload);
-router.post("/file/upload", FileController.upload);
+// router.get("/file", FileController.upload);
+// router.post("/file/upload", FileController.upload);
 
 export default router;
