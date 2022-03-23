@@ -5,8 +5,9 @@ import server from "koa-static";
 import cors from "@koa/cors";
 import path from "path";
 
-import config from "./config";
 import router from "./routes";
+
+const { PROT = 7077 } = process.env;
 
 const app = new Koa();
 
@@ -20,6 +21,6 @@ app.use(server(path.join(__dirname, "/static")));
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(config.port, () => {
-  console.log(`server listen at: http://localhost:${config.port}`);
+app.listen(PROT, () => {
+  console.log(`server listen at: http://localhost:${PROT}`);
 });
