@@ -1,8 +1,9 @@
 import crypto from "crypto";
-import { MS_IN_ONE_DAY, sign } from "../utils";
 
-import User from "../service/user";
 import type { Context, Next } from "koa";
+
+import { MS_IN_ONE_DAY, sign } from "../utils";
+import User from "../service/user";
 
 const userService = new User();
 

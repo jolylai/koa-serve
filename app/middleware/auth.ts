@@ -1,4 +1,4 @@
-// import jwt from "jsonwebtoken";
+import { verify } from "../utils";
 import type { Context, Next } from "koa";
 
 function auth() {
@@ -13,10 +13,9 @@ function auth() {
     console.log("token: ", token);
 
     try {
-      // process.env.JWT_SECRET
-      // const { id, name } = jwt.verify(token, "JWT_SECRET");
+      const user = verify(token);
 
-      // ctx.request.user = { id, name };
+      ctx.request.body.user = user;
 
       await next();
     } catch (error) {

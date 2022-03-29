@@ -12,7 +12,7 @@ const router = new Router({
 // router.use(auth());
 
 // login
-// router.get("/login", AuthController.login);
+router.post("/login", AuthController.login);
 router.post("/register", AuthController.register);
 router.post("/verify-email", AuthController.verifyEmail);
 // router.post("/logout", LoginController.logout);

@@ -7,9 +7,11 @@ import path from "path";
 
 import router from "./routes";
 
-const { PROT = 7077 } = process.env;
+const { PORT } = process.env;
 
 const app = new Koa();
+
+app.keys = ["secret", "key"];
 
 // middleware
 app.use(logger());
@@ -21,6 +23,6 @@ app.use(server(path.join(__dirname, "/static")));
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(PROT, () => {
-  console.log(`server listen at: http://localhost:${PROT}`);
+app.listen(PORT, () => {
+  console.log(`server listen at: http://localhost:${PORT}`);
 });
