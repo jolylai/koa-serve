@@ -19,7 +19,18 @@ app.use(cors());
 
 // file
 app.use(koaBody({ multipart: true }));
-app.use(server(path.join(__dirname, "/static")));
+
+// static server
+const staticPath = path.join(__dirname, "/static");
+
+app.use(
+  server(staticPath, {
+    setHeaders(res, path, stats) {
+      console.log("res, path, stats: ", res, path, stats);
+      // res.setHeader("Content-Disposition", "attachment; filename=download.jpg");
+    },
+  })
+);
 
 app.use(router.routes()).use(router.allowedMethods());
 

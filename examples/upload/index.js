@@ -9,7 +9,7 @@
     return axios({
       method: "post",
       baseURL: "http://localhost:7070",
-      url: "/api/file/upload",
+      url: "/api/upload/image",
       data: formData,
     });
   };

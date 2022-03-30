@@ -15,6 +15,7 @@
     "@koa/router": "^10.1.1",
     "@prisma/client": "^3.11.0",
     "crypto": "^1.0.1",
+    "fs-extra": "^10.0.1",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.1",
     "koa-body": "^4.1.1",
@@ -23,6 +24,7 @@
     "prisma": "^3.11.0"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/koa-logger": "^3.1.1",
     "@types/koa-static": "^4.0.2",
