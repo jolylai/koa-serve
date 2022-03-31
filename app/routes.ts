@@ -20,7 +20,7 @@ router.post("/verify-email", AuthController.verifyEmail);
 // router.post("/logout", LoginController.logout);
 
 // upload
-router.post("/upload/image", UploadController.image);
-// router.post("/file/upload", FileController.upload);
+router.post("/upload/local", UploadController.local);
+router.post("/upload/oss", UploadController.oss);
 
 export default router;

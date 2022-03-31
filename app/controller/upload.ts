@@ -1,19 +1,10 @@
 import { Context, Next } from "koa";
 import fs from "fs-extra";
 import path from "path";
-
-// const saveFileLocal = async (file: File, filePath: string) => {
-//   const reader = fs.createReadStream(file.path);
-//   console.log("file.path: ", file.path);
-
-//   const fileName = file.name || `${Math.random() * 100000} `;
-//   const stream = fs.createWriteStream(path.join(filePath, fileName));
-
-//   reader.pipe(stream);
-// };
+import aliOSS from "../utils/oss";
 
 export default class UploadController {
-  async image(ctx: Context, next: Next) {
+  async local(ctx: Context, next: Next) {
     const files = ctx.request.files;
 
     if (!files) {
@@ -43,5 +34,36 @@ export default class UploadController {
       message: "success",
     };
   }
+
+  async oss(ctx: Context) {
+    const files = ctx.request.files;
+
+    if (!files) {
+      throw new Error("Please upload file");
+    }
+
+    const { file } = files;
+
+    if (!file) {
+      throw new Error("Please upload file use file as key");
+    }
+
+    if (Array.isArray(file)) {
+      const uploads = file.map((item) => {
+        const fileName = item.name || `${Math.random() * 100000} `;
+        return aliOSS.put(fileName, item.path);
+      });
+
+      const result = await Promise.all(uploads);
+
+      return (ctx.body = result);
+    }
+
+    const fileName = file.name || `${Math.random() * 100000} `;
+    const result = await aliOSS.put(fileName, file.path);
+
+    ctx.body = result;
+  }
+
   download(ctx: Context, next: Next) {}
 }
