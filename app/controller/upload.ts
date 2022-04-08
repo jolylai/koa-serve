@@ -56,6 +56,11 @@ export default class UploadController {
 
       const result = await Promise.all(uploads);
 
+      // 删除本地文件
+      file.forEach((item) => {
+        fs.remove(item.path);
+      });
+
       return (ctx.body = result);
     }
 
